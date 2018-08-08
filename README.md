@@ -21,4 +21,5 @@ Also, you can add new person using photos.
 ![demo2](./demo2.gif)
 
 ## Download
-[Google Drive](https://drive.google.com/file/d/1KlC3HsBkkME1kO8YPNUJqSWtqSd0eqeg/view?usp=sharing)
+If facerecognizer/app/src/main/ don't have the assets. you shold download the file.
+[BaiDu Driver](https://pan.baidu.com/s/1ZWt4OIdvf3q1hfzO0TM0PA) The Key: 9jt4
