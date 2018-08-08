@@ -14,11 +14,8 @@ The project is heavily inspired by
 * Tensorflow Android Camera Demo[(Github)](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android)
 
 ## Screenshots
-The code can recognize 5 famous people's faces.[(Source)](https://github.com/pillarpond/facerecognizer/blob/master/app/src/main/assets/label)  
-![demo1](./demo1.gif)  
-
-Also, you can add new person using photos.  
-![demo2](./demo2.gif)
+This is a video to kown the app
+(http://www.wdiannao.cc/upload/2018/08/19tedj0liehq2o3v4ntothh08v.mp4)
 
 ## Download
 If facerecognizer/app/src/main/ don't have the assets, you shold download the file.
