@@ -8,7 +8,7 @@ This sample demonstrates realtime face recognition on Android. The project is ba
 ## Inspiration
 The project is heavily inspired by
 
-*facerecognizer[(Github)](https://github.com/pillarpond/facerecognizer)
+* facerecognizer[(Github)](https://github.com/pillarpond/facerecognizer)
 * FaceNet[(Github)](https://github.com/davidsandberg/facenet)
 * MTCNN[(Github)](https://github.com/blaueck/tf-mtcnn)
 * Android LibSVM[(Github)](https://github.com/yctung/AndroidLibSVM)
