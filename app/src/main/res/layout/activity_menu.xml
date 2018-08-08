@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#000000"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/back_main_button"
+            android:layout_width="47dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="3dp"
+            android:background="@mipmap/back"
+            tools:layout_editor_absoluteX="7dp"
+            tools:layout_editor_absoluteY="4dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/user_listview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="已有成员"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <ListView
+        android:id="@+id/user_listview"
+        android:layout_width="300dp"
+        android:layout_height="430dp"
+        android:layout_centerInParent="true"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="68dp" />
+
+    <Button
+        android:id="@+id/delete_user_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:background="@mipmap/decrease"
+        android:padding="5dp"
+        tools:layout_editor_absoluteX="334dp"
+        tools:layout_editor_absoluteY="517dp" />
+
+    <Button
+        android:id="@+id/add_user_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:background="@mipmap/add"
+        android:padding="5dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="517dp" />
+
+
+</RelativeLayout>

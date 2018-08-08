@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">face recognizer</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="enter_manager_password">管理员密码</string>
+    <string name="enter_user_name">请输入姓名</string>
+    <string name="select_name">Select name</string>
+    <string name="ok">OK</string>
+
+    <string name="add_person">add person</string>
+    <string name="update_person">update person</string>
+    <string name="had_member">已有成员</string>
+    <string name="select_name_to_delete">请选择要删除成员</string>
+    <string name="school">=============</string>
+    <string name="lab">================</string>
+    <string name="note">利用人脸识别技术，实现完全智能和具有高安全性的身份鉴别验证系统，配合管理者进行人员的通行控制。校方管理者通过系统的业务管理、数据查询与分析功能，可实时掌握人员在楼宇的出入信息，维持安全的校园环境。</string>
+</resources>
