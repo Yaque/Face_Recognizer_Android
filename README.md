@@ -15,7 +15,9 @@ The project is heavily inspired by
 
 ## Screenshots
 This is a video to kown the app
+
 (http://www.wdiannao.cc/upload/2018/08/19tedj0liehq2o3v4ntothh08v.mp4)
+
 
 ## Download
 If facerecognizer/app/src/main/ don't have the assets, you shold download the file.
