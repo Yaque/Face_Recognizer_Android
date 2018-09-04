@@ -172,10 +172,10 @@ public class Classifier {
                 Float prob = pair.second;
 
                 String name;
-                if (prob != 0.0F)
+//                if (prob != 0.0F)
                     name = classNames.get(pair.first);
-                else
-                    name = "Unknown";
+//                else
+//                    name = "Unknown";
 
                 Recognition result =
                         new Recognition("" + pair.first, name, prob, rectF);

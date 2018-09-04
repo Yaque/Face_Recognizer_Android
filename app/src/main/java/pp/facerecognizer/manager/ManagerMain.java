@@ -26,7 +26,7 @@ import static pp.facerecognizer.R.id.user_name;
 
 
 public class ManagerMain extends AppCompatActivity {
-    private static final int FACE_SIZE = 160;
+    private static final int FACE_SIZE = 112;
     private Button addUserButton;
     private Button deleteUserButton;
     private Button backMainButton;

@@ -64,7 +64,7 @@ import java.util.Vector;
 public class MainActivity extends CameraActivity implements OnImageAvailableListener {
     private static final Logger LOGGER = new Logger();
 
-    private static final int FACE_SIZE = 160;
+    private static final int FACE_SIZE = 112;
     private static final int CROP_SIZE = 300;
 
     private static final Size DESIRED_PREVIEW_SIZE = new Size(640, 480);

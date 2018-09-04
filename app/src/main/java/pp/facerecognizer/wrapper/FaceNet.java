@@ -30,20 +30,22 @@ import java.nio.FloatBuffer;
 import pp.facerecognizer.Classifier;
 
 public class FaceNet {
-    private static final String MODEL_FILE = "file:///android_asset/facenet.pb";
+    private static final String MODEL_FILE = "file:///android_asset/insightface.pb";
     private static final int BYTE_SIZE_OF_FLOAT = 4;
 
     // Config values.
-    private String inputName;
+    private String[] inputName;
     private int inputHeight;
     private int inputWidth;
 
     // Pre-allocated buffers.
     private int[] intValues;
-    private short[] shortValues;
+    private float[] floatValues;
+
     private FloatBuffer inputBuffer;
 
     private FloatBuffer outputBuffer;
+    private float[] dropout = {0.5F};
     private String[] outputNames;
 
     private TensorFlowInferenceInterface inferenceInterface;
@@ -65,29 +67,29 @@ public class FaceNet {
 
         final Graph g = d.inferenceInterface.graph();
 
-        d.inputName = "input";
+        d.inputName = new String[]{"img_inputs", "dropout_rate"};
         // The inputName node has a shape of [N, H, W, C], where
         // N is the batch size
         // H = W are the height and width
         // C is the number of channels (3 for our purposes - RGB)
-        final Operation
-                inputOp1 = g.operation(d.inputName);
-        if (inputOp1 == null) {
-            throw new RuntimeException("Failed to find input Node '" + d.inputName + "'");
-        }
+//        final Operation
+//                inputOp1 = g.operation(d.inputName[0]);
+//        if (inputOp1 == null) {
+//            throw new RuntimeException("Failed to find input Node '" + d.inputName + "'");
+//        }
 
         d.inputHeight = inputHeight;
         d.inputWidth = inputWidth;
 
-        d.outputNames = new String[] {"embeddings"};
-        final Operation outputOp1 = g.operation(d.outputNames[0]);
-        if (outputOp1 == null) {
-            throw new RuntimeException("Failed to find output Node'" + d.outputNames[0] + "'");
-        }
+        d.outputNames = new String[] {"resnet_v1_50/E_BN2/Identity"};
+//        final Operation outputOp1 = g.operation(d.outputNames[0]);
+//        if (outputOp1 == null) {
+//            throw new RuntimeException("Failed to find output Node'" + d.outputNames[0] + "'");
+//        }
 
         // Pre-allocate buffers.
         d.intValues = new int[inputHeight * inputWidth];
-        d.shortValues = new short[inputHeight * inputWidth * 3];
+        d.floatValues = new float[inputHeight * inputWidth * 3];
         d.inputBuffer = ByteBuffer.allocateDirect(inputHeight * inputWidth * BYTE_SIZE_OF_FLOAT * 3)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer();
@@ -110,40 +112,26 @@ public class FaceNet {
         Canvas canvas = new Canvas(bitmap);
         canvas.drawBitmap(originalBitmap, rect, new Rect(0, 0, inputWidth, inputHeight), null);
 
-        bitmap.getPixels(intValues, 0, inputWidth, 0, 0, inputWidth, inputHeight);
+        int w = bitmap.getWidth(), h = bitmap.getHeight();
+        int intValues[] = new int[w * h];
+        float floatValues[] = new float[w * h * 3];
 
+        bitmap.getPixels(intValues, 0, w, 0, 0, w, h);
+
+        // BGR
         for (int i = 0; i < intValues.length; ++i) {
             int p = intValues[i];
 
-            shortValues[i * 3 + 2] = (short) (p & 0xFF);
-            shortValues[i * 3 + 1] = (short) ((p >> 8) & 0xFF);
-            shortValues[i * 3 + 0] = (short) ((p >> 16) & 0xFF);
+            floatValues[i * 3 + 0] = p & 0xFF;
+            floatValues[i * 3 + 1] = (p >> 8) & 0xFF;
+            floatValues[i * 3 + 2] = (p >> 16) & 0xFF;
         }
-
-        double sum = 0f;
-        for (short shortValue : shortValues) {
-            sum += shortValue;
-        }
-        double mean = sum / shortValues.length;
-        sum = 0f;
-
-        for (short shortValue : shortValues) {
-            sum += Math.pow(shortValue - mean, 2);
-        }
-        double std = Math.sqrt(sum / shortValues.length);
-        double std_adj = Math.max(std, 1.0/Math.sqrt(shortValues.length));
-
-        inputBuffer.rewind();
-        for (short shortValue : shortValues) {
-            inputBuffer.put((float) ((shortValue - mean) * (1 / std_adj)));
-        }
-        inputBuffer.flip();
-
         Trace.endSection(); // preprocessBitmap
 
         // Copy the input data into TensorFlow.
         Trace.beginSection("feed");
-        inferenceInterface.feed(inputName, inputBuffer, 1, inputHeight, inputWidth, 3);
+        inferenceInterface.feed(inputName[0], floatValues, 1, inputHeight, inputWidth, 3);
+        inferenceInterface.feed(inputName[1], dropout);
         Trace.endSection();
 
         // Run the inference call.

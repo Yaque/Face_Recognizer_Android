@@ -70,8 +70,8 @@ public class LibSVM {
         SVM svm = SVM.create();
         svm.setType(SVM.C_SVC);
         svm.setKernel(SVM.RBF);
-        svm.setGamma(1);
-        svm.setC(100);
+        svm.setGamma(150);
+        svm.setC(1);
         TermCriteria termCriteria = new TermCriteria(TermCriteria.EPS, 1000, 1e-6);
         svm.setTermCriteria(termCriteria);
 
@@ -96,6 +96,7 @@ public class LibSVM {
 
 
 
+
         Mat testDatas = new Mat(1,512,CvType.CV_32FC1);
         float[] preData = new float[512];
         for(int i=0; i < 512; i ++) {
@@ -103,6 +104,26 @@ public class LibSVM {
             preData[i] = temp;
             testDatas.put(0, i, temp);
         }
+//
+//        float[] osjl = new float[dataList.size()];
+//        float tempSum = 0.0F;
+//        float minOSJL = 2000.0F;
+//        int minIndex = 0;
+//        for (int i = 0; i < dataList.size(); i++) {
+//            String[] tempString = dataList.get(i).split(":");
+//            for (int j = 0; j < tempString.length -1; j ++){
+//                tempSum = tempSum + (float) Math.pow(Float.parseFloat(tempString[j + 1]) - preData[j], 2);
+//            }
+//            osjl[i] = (float) Math.sqrt(tempSum);
+//            if (osjl[i] <= minOSJL) {
+//                minOSJL = osjl[i];
+//                minIndex = i;
+//            }
+//            tempSum = 0.0F;
+//        }
+//
+//        Arrays.sort(osjl);
+
         float prob = svm.predict(testDatas);
         ArrayList<String> labelName = null;
         try {
@@ -122,24 +143,25 @@ public class LibSVM {
         float self_sum_two = 0.0F;
 
 
-        for (int i = 0; i < tempString.length - 1; i++) {
-            sum = sum + (float) Math.pow(Float.parseFloat(tempString[i + 1]) - preData[i], 2);
-            sum_mul = sum_mul + Float.parseFloat(tempString[i + 1]) * preData[i];
-            self_sum_one = self_sum_one + (float) Math.pow(Float.parseFloat(tempString[i + 1]), 2);
-            self_sum_two = self_sum_two + (float) Math.pow(preData[i], 2);
-        }
+//        for (int i = 0; i < tempString.length - 1; i++) {
+//            sum = sum + (float) Math.pow(Float.parseFloat(tempString[i + 1]) - preData[i], 2);
+//            sum_mul = sum_mul + Float.parseFloat(tempString[i + 1]) * preData[i];
+//            self_sum_one = self_sum_one + (float) Math.pow(Float.parseFloat(tempString[i + 1]), 2);
+//            self_sum_two = self_sum_two + (float) Math.pow(preData[i], 2);
+//        }
+//
+//        float consin = sum_mul / (float) (Math.sqrt(self_sum_one) * Math.sqrt(self_sum_two));
+//
+//        prob = (float) Math.sqrt(sum);
+//        prob = consin - prob;
 
-        float consin = sum_mul / (float) (Math.sqrt(self_sum_one) * Math.sqrt(self_sum_two));
 
-        prob = (float) Math.sqrt(sum);
-        prob = consin - prob;
+//        if(prob < -0.2F){
+//            prob = 0.0F;
+//        }
 
-
-        if(prob < -0.2F){
-            prob = 0.0F;
-        }
-
-        return new Pair<>(index, (float) prob);
+//        return new Pair<>(minIndex, minOSJL);
+        return new Pair<>(index, prob);
     }
 
     // singleton for the easy access
