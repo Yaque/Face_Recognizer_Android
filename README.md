@@ -24,3 +24,6 @@ This is a video to kown the app
 If facerecognizer/app/src/main/ don't have the assets, you shold download the file.
 
 [BaiDu Driver](https://pan.baidu.com/s/1ZWt4OIdvf3q1hfzO0TM0PA) The Key: 9jt4
+
+## Release
+in download part, the driver hava release file.
