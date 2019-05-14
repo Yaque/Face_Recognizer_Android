@@ -27,3 +27,4 @@ If facerecognizer/app/src/main/ don't have the assets, you shold download the fi
 
 ## Release
 in download part, the driver hava release file.
+https://mp.weixin.qq.com/s?__biz=MzU1Nzc1NjI0Nw==&mid=2247484071&idx=1&sn=19157023f8f0e1b5422440ab4c0d75c1&chksm=fc31b89fcb46318995e0c54f264992bcf600ac3f6ee30b08eb95a22ddcda99668ab180ba1648&mpshare=1&scene=1&srcid=&from=groupmessage&ascene=1&devicetype=android-28&version=2700043a&nettype=cmnet&abtest_cookie=BAABAAoACwASABMABQAjlx4A0JkeANyZHgD6mR4AAZoeAAAA&lang=zh_CN&pass_ticket=tULAAMwH6Ci6E9dD9MzKQZZlsmTMpykl%2BiEp5Wb%2BEBLH8kQRT1tecAyCqFOHrmVp&wx_header=1
